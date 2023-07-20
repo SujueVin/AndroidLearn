@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class FruitAdapter(val fruitList: List<Fruit>) :
@@ -19,6 +20,18 @@ class FruitAdapter(val fruitList: List<Fruit>) :
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fruit_item_horizonral,parent,false) //横向滚动
             //.inflate(R.layout.fruit_item,parent,false)
+        val viewHolder = ViewHolder(view)
+        viewHolder.itemView.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            val fruit = fruitList[position]
+            Toast.makeText(parent.context,"you clicked view ${fruit.name}",Toast.LENGTH_SHORT).show()
+        }
+        viewHolder.fruitImage.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            val fruit = fruitList[position]
+            Toast.makeText(parent.context,"you clicked image ${fruit.name}",
+                Toast.LENGTH_SHORT).show()
+        }
         return ViewHolder(view)
     }
 
